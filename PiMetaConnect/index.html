@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiMetaConnect - منصة التواصل والميتافيرس</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            flex: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .welcome-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .welcome-section h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .welcome-section p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .auth-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .user-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            text-align: right;
+        }
+
+        .user-info p {
+            margin: 0.5rem 0;
+            color: #333;
+        }
+
+        .payment-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .payment-section.active {
+            display: block;
+        }
+
+        .input-group {
+            margin: 1rem 0;
+            text-align: right;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            direction: rtl;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+
+        .status {
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <span>🌐</span>
+            <span>PiMetaConnect</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h1>مرحباً بك في PiMetaConnect</h1>
+            <p>منصة متكاملة تجمع بين التواصل الاجتماعي، الميتافيرس، والـ NFTs مدعومة بشبكة Pi Network</p>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>🔐 المصادقة الآمنة</h3>
+                <p>تسجيل دخول آمن باستخدام حساب Pi Network الخاص بك</p>
+            </div>
+            <div class="feature-card">
+                <h3>💰 المحفظة الرقمية</h3>
+                <p>إدارة عملات Pi الخاصة بك وإجراء المعاملات بسهولة</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎨 NFT Marketplace</h3>
+                <p>شراء وبيع الأعمال الفنية الرقمية باستخدام Pi</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌍 الميتافيرس</h3>
+                <p>استكشف عالم افتراضي تفاعلي مع مجتمع Pi</p>
+            </div>
+        </div>
+
+        <div class="auth-section">
+            <h2>ابدأ الآن</h2>
+            <div id="status"></div>
+
+            <div id="loginSection">
+                <button class="btn" onclick="authenticateUser()">
+                    تسجيل الدخول بحساب Pi
+                </button>
+            </div>
+
+            <div id="userSection" style="display: none;">
+                <div class="user-info">
+                    <p><strong>اسم المستخدم:</strong> <span id="username"></span></p>
+                    <p><strong>معرف المستخدم:</strong> <span id="userId"></span></p>
+                </div>
+
+                <div class="payment-section" id="paymentSection">
+                    <h3>إجراء دفعة</h3>
+                    <div class="input-group">
+                        <label>المبلغ (Pi):</label>
+                        <input type="number" id="amount" placeholder="أدخل المبلغ" step="0.01" min="0.01">
+                    </div>
+                    <div class="input-group">
+                        <label>الوصف:</label>
+                        <input type="text" id="memo" placeholder="وصف المعاملة">
+                    </div>
+                    <button class="btn" onclick="createPayment()">
+                        إرسال الدفعة
+                    </button>
+                </div>
+
+                <button class="btn" onclick="logout()">
+                    تسجيل الخروج
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 PiMetaConnect. جميع الحقوق محفوظة.</p>
+        <p>مدعوم بواسطة Pi Network</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
