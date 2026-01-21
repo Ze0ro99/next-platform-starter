@@ -1,0 +1,33 @@
+{
+  "name": "PiMetaConnect",
+  "short_name": "PiMetaConnect",
+  "description": "منصة متكاملة تجمع بين التواصل الاجتماعي، الميتافيرس، والـ NFTs مدعومة بشبكة Pi Network",
+  "version": "1.0.0",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#764ba2",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "app_icon_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "author": {
+    "name": "Ze0ro99",
+    "email": "Kamelkadah910@gmail.com"
+  },
+  "permissions": [
+    "pi_authentication",
+    "wallet_access",
+    "payments"
+  ],
+  "pi_network": {
+    "sandbox": true,
+    "api_version": "2.0",
+    "scopes": ["username", "payments", "wallet_address"]
+  }
+}
