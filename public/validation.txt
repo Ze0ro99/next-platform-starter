@@ -1,0 +1,9 @@
+PiMetaConnect Validation File
+==============================
+Project: PiMetaConnect
+Platform: Pi Network / Netlify
+Version: 1.0.0
+Status: Active
+Deployment: Netlify
+
+This file validates the PiMetaConnect application for the Pi Network platform.
