@@ -14,7 +14,7 @@
     "blobshape": "^1.0.0",
     "bright": "^1.0.0",
     "markdown-to-jsx": "^7.7.16",
-    "next": "^16.2.3",
+    "next": "^16.2.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "unique-names-generator": "^4.7.1"
@@ -24,7 +24,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "9.39.2",
     "eslint-config-next": "^16.0.8",
-    "postcss": "^8.5.10",
+    "postcss": "^8.5.11",
     "tailwindcss": "^4.1.15"
   }
 }
